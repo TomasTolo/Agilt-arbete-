@@ -13,7 +13,7 @@ export default function App() {
   const [sensorsLoading, setSensorsLoading] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5050/api/rooms")
+    fetch("http://localhost:5000/api/rooms")
       .then((r) => {
         if (!r.ok) throw new Error('Kunde inte hämta rum');
         return r.json();
@@ -36,7 +36,7 @@ export default function App() {
     }
     setSelectedRoom(room);
     setSensorsLoading(true);
-    fetch(`http://localhost:5050/api/rooms/${room._id}/sensors`)
+    fetch(`http://localhost:5000/api/rooms/${room._id}/sensors`)
       .then((r) => r.json())
       .then((data) => {
         setModalSensors(data);

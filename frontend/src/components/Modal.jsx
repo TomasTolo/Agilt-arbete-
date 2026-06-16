@@ -35,4 +35,18 @@ function Modal({ room, sensors, loading, onClose }) {
   );
 }
 
+useEffect(() => {
+  function handleEscape(event) {
+    if (event.key === "Escape") {
+      onClose();
+    }
+  }
+
+  window.addEventListener("keydown", handleEscape);
+
+  return () => {
+    window.removeEventListener("keydown", handleEscape);
+  };
+}, [onClose]);
+
 export default Modal;

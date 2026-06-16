@@ -1,6 +1,7 @@
 function SensorCard({ sensor }) {
   const isWarning = sensor.status === "Varning";
   const icon = sensor.type === "Temperatur" ? "🌡️" : "💧";
+  const isTemperature = sensor.type === "Temperatur";
 
   return (
     <article className={`sensor-card ${isWarning ? "sensor-warning" : ""}`}>
