@@ -4,7 +4,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 // hämta från seed
-const Room = require('./models/Room');
+const Room = require('./models/room');
 const Sensor = require('./models/Sensor');
 
 const app = express();
@@ -53,6 +53,16 @@ app.get('/api/rooms', async (req, res) => {
   }
 });
 
+app.get('/api/rooms/:id/sensors', async (req, res) => {
+  try {
+    const sensors = await Sensor.find({ roomId: req.params.id });
+
+    res.json(sensors);
+  } catch (error) {
+    console.error('Fel vid hämtning av sensorer:', error);
+    res.status(500).json({ message: 'Serverfel vid hämtning av sensorer' });
+  }
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
